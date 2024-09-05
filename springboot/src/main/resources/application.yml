@@ -1,0 +1,13 @@
+spring.application.name: springboot
+
+server:
+  port: 8088
+
+#logging:
+#  level:
+#    '[org.springframework]': debug
+
+# Spring Boot에서는 MessagesSource 빈을 따로 등록할 필요 없이 야믈 파일에서 messages 설정을 통해 사용
+spring:
+  messages:
+    basename: messages
