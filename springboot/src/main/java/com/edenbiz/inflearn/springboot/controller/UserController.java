@@ -5,6 +5,9 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,14 +35,26 @@ public class UserController {
 	}
 
 	@GetMapping("/users/{id}")
-	public User retrieveUser(@PathVariable int id) {
+	// EntityModel은 클라이언트가 해당 리소스와 연관된 다른 리소스로 쉽게 이동할 수 있도록 링크정보를 제공하는 데 사용
+	// ResponseEntity는 HTTP 응답의 상세한 제어(상태코드, 헤더 등)이 필요할 때 사용
+	public EntityModel<User> retrieveUser(@PathVariable int id) {
 		User user = service.findOne(id);
 		
 		if (user == null) {
 			throw new UserNotFoundException(String.format("ID[%s] not found", id));
 		}
 		
-		return user;
+		// EntityModel은 생성자를 제공하지 않고 다른 객체를 통해 of 메소드로 생성
+		EntityModel<User> entityModel = EntityModel.of(user);
+		
+		// EntityModel 객체에 추가할 링크 생성
+		// 현재 클래스(UserController)에서 retrieveAllUsers 메소드를 실행할(methodOn) 링크 생성(linkTo)
+		WebMvcLinkBuilder link = linkTo(methodOn(this.getClass()).retrieveAllUsers());  
+		// EntityModel 객체에 링크 추가
+		// 생성한 링크(link)를 withRel 메소드로 링크 이름(all-users)과 함께 추가
+		entityModel.add(link.withRel("all-users"));
+		
+		return entityModel;
 	}
 	
 	// CREATED

@@ -11,7 +11,8 @@ import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 // 임시적으로 DB 사용하지 않기
-@SpringBootApplication(exclude={DataSourceAutoConfiguration.class})
+@SpringBootApplication
+// (exclude={DataSourceAutoConfiguration.class})
 public class SpringbootApplication {
 
 	public static void main(String[] args) {

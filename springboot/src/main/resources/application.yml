@@ -11,3 +11,31 @@ server:
 spring:
   messages:
     basename: messages
+  mvc:
+    pathmatch:
+      matching-strategy: ant-path-matcher
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: tester
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    defer-datasource-initialization: true
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true
+  # 고정 아이디/비번을 사용하게 되면 비번 수정시마다 서버 재가동 필요
+#  security:
+#    user:
+#      name: username
+#      password: password!
+
+#actuator 기능 활용      
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"
