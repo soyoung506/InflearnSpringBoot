@@ -31,8 +31,11 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml'
 	implementation 'org.springframework.boot:spring-boot-starter-hateoas'
+	// Spring Boot 2에서 Swagger 라이브러리 추가
 	implementation 'io.springfox:springfox-swagger2:2.9.2'
 	implementation 'io.springfox:springfox-swagger-ui:2.9.2'
+	// Spring Boot 3에서 Swagger 라이브러리 추가
+	// implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.plugin:spring-plugin-core:1.2.0.RELEASE'
 	// implementation 'org.springframework.data:spring-data-rest-hal-explorer'

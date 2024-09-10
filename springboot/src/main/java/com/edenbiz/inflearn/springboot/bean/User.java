@@ -20,24 +20,30 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 @JsonIgnoreProperties(value = {"password", "ssn"}) // Json에 노출하지 않을 변수 설정
+// @Schema(description = "사용자 상세 정보를 위한 도메인 객체")
 @Entity  // 데이터베이스의 릴레이션을 생성/연결하는 어노테이션
 @Table(name = "users")  // 데이터베이스 릴레이션의 이름 설정
 public class User {
 	@Id  // 해당 릴레이션의 기본키임을 정의
 	@GeneratedValue  // 해당 기본키는 자동으로 생성됨을 정의
+// 	@Schema(title = "사용자 ID", description = "사용자 ID는 자동 생성됩니다.")
 	private Integer id;
 	
 	// name 변수값이 최소 2 이상이어야 함을 설정 (Validation 유효값 설정)
+// 	@Schema(title = "사용자 이름", description = "사용자 이름을 입력합니다.")
 	@Size(min = 2, message = "Name은 2글자 이상 입력해주세요.")
 	private String name;
 	
 	// joinDate 변수값이 과거값이어야 함을 설정 (Validation 유효값 설정)
+// 	@Schema(title = "사용자 등록일", description = "사용자 등록일을 입력합니다. 입력하지 않으면 현재 날짜가 지정됩니다.")
 	@Past(message = "등록일은 미래 날짜를 입력할 수 없습니다.")
 	private Date joinDate;
 	
 //	@JsonIgnore
+	// @Schema(title = "사용자 비밀번호", description = "사용자 비밀번호를 입력합니다.")
 	private String password;
 	
+// 	@Schema(title = "사용자 주민번호", description = "사용자 주민번호를 입력합니다.")
 //	@JsonIgnore
 	private String ssn;
 	

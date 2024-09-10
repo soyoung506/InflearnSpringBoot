@@ -22,6 +22,7 @@ import com.edenbiz.inflearn.springboot.dao.UserDaoService;
 import com.edenbiz.inflearn.springboot.exception.UserNotFoundException;
 
 @RestController
+// @Tag(name = "user-controller", description = "일반 사용자 서비스를 위한 컨트롤러입니다.")
 public class UserController {
 	private UserDaoService service;
 
@@ -34,6 +35,16 @@ public class UserController {
 		return service.findAll();
 	}
 
+	// 특정 경로에 대한 작업 (HTTP 메소드 설명)
+// 	@Operation(summary = "사용자 정보 조회 API", description = "사용자 ID를 이용해서 사용자 상세 정보 조회를 합니다.")
+	// API 작업 처리에 대한 응답코드 설명
+//	@ApiResponses({
+//					@ApiResponse(responseCode = "200", description = "OK"),
+//					@ApiResponse(responseCode = "400", description = "BAD REQUEST"),
+//					@ApiResponse(responseCode = "404", description = "USER NOT FOUND"),
+//					@ApiResponse(responseCode = "500", description = "INTERNAL SERVER ERROR")
+//		}
+//	)
 	@GetMapping("/users/{id}")
 	// EntityModel은 클라이언트가 해당 리소스와 연관된 다른 리소스로 쉽게 이동할 수 있도록 링크정보를 제공하는 데 사용
 	// ResponseEntity는 HTTP 응답의 상세한 제어(상태코드, 헤더 등)이 필요할 때 사용
